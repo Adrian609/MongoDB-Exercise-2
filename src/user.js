@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-    name : String
+    name : String,
+    postCount : Number
 });
 // User: represents the entire collection of user data
 const User = mongoose.model('users', UserSchema);
