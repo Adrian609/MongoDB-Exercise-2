@@ -26,15 +26,45 @@ describe('Deleting a user', () => {
         })
     });
 
-    it('class method remove', () => {
-
+    it('class method remove', (done) => {
+        /*
+        class method remove, romoves every user with the name of Joe.
+        class method remove is goof for deleting every instance or an object
+        in a class.
+        */
+        User.remove({
+                name: 'Joe'
+            })
+            .then(() => User.findOne({
+                name: 'Joe'
+            }))
+            .then((user) => {
+                assert(user === null);
+                done();
+            });
     });
 
-    it('class method findAndRemove', () => {
 
+    it('class method findAndRemove', (done) => {
+        User.findOneAndRemove({
+                name: 'Joe'
+            }).then(() => User.findOne({
+                name: 'Joe'
+            }))
+            .then((user) => {
+                assert(user === null);
+                done();
+            });
     });
 
-    it('class method findByIdAndRemove', () => {
-
+    it('class method findByIdAndRemove', (done) => {
+        User.findByIdAndRemove(joe._id)
+            .then(() => User.findOne({
+                name: 'Joe'
+            }))
+            .then((user) => {
+                assert(user === null);
+                done();
+            });
     });
 });
