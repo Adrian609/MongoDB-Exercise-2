@@ -46,6 +46,9 @@ describe('Deleting a user', () => {
 
 
     it('class method findAndRemove', (done) => {
+        /*
+        findOneAndRemove is good for finding unique identifiers like emails of ID numbers         
+        */
         User.findOneAndRemove({
                 name: 'Joe'
             }).then(() => User.findOne({
